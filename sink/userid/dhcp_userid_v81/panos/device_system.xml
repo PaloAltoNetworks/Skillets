@@ -1,0 +1,3 @@
+<service>
+    <disable-userid-syslog-listener-udp>no</disable-userid-syslog-listener-udp>
+</service>

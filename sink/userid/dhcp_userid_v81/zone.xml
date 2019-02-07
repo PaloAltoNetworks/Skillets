@@ -1,0 +1,3 @@
+<entry name="{{ ZONE_TRUST }}">
+    <enable-user-identification>yes</enable-user-identification>
+ </entry>

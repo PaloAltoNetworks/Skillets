@@ -6,7 +6,7 @@
 name: dhcp_userid_panos_v81
 # label used for menu selection
 label: v8.1 NGFW DHCP Log Parsing to create userID entries
-description: Uses firewall dhcp logs to create dhcp userID entries
+description: Use firewall dhcp logs to create dhcp userID entries
 # type of device configuration
 type: panos
 extends:

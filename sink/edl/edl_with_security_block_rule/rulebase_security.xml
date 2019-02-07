@@ -29,7 +29,7 @@
       <member>any</member>
     </hip-profiles>
     <action>deny</action>
-    <log-setting>default</log-setting>
+    <log-setting>{{ logging_profile }}</log-setting>
   </entry>
   <entry name="Inbound {{ edl_name }} block">
     <description>Inbound block rule based on EDL {{ edl_name }}</description>
@@ -61,6 +61,6 @@
       <member>any</member>
     </hip-profiles>
     <action>deny</action>
-    <log-setting>default</log-setting>
+    <log-setting>{{ logging_profile }</log-setting>
   </entry>
 </rules>

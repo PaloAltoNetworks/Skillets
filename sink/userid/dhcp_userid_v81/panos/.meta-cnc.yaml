@@ -3,7 +3,7 @@
 # created by Nimesh Patel
 
 # snippet name
-name: dhcp_userid_v81
+name: dhcp_userid_panos_v81
 # label used for menu selection
 label: v8.1 NGFW DHCP Log Parsing to create userID entries
 description: Uses firewall dhcp logs to create dhcp userID entries

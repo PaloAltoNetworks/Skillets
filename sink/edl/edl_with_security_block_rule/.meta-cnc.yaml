@@ -1,5 +1,6 @@
 # edl_with_securityblockrule_panos_v81 adds a basic IP EDL
 # also created in and out security blocks rules with EDL as address
+# once created the security rule should be moved to the top of the rule list
 # associated to John Newsome Minemeld demo
 
 # unique snippet name

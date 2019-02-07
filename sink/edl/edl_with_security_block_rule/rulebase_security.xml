@@ -61,6 +61,6 @@
       <member>any</member>
     </hip-profiles>
     <action>deny</action>
-    <log-setting>{{ logging_profile }</log-setting>
+    <log-setting>{{ logging_profile }}</log-setting>
   </entry>
 </rules>

@@ -4,10 +4,10 @@
 name: aws_single_pavm
 
 # label should be a human readable label that conveys what this skillet will do
-label: AWS Single Pan-OS VM-Series
+label: AWS Single PAN-OS VM-Series
 
 # description is a longer more informative version of a label
-description: AWS Single Pan-OS VM-Series
+description: AWS Single PAN-OS VM-Series
 
 # type instructs Panhandler how to consume this skillet
 type: terraform

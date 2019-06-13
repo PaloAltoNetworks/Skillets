@@ -19,6 +19,10 @@ extends:
 # group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
 labels:
   terraform_provider: aws
+  collection:
+    - Public Cloud
+    - AWS
+    - Deploy
 
 
 # Variables will be presented to the user via the Panhandler GUI. These values will then be passed to
@@ -37,10 +41,6 @@ variables:
     description: SSH Key Name
     default: ssh_key_pair
     type_hint: text
-#  - name: aws_key_path
-#    description: Local SSH Key Path
-#    default: ssh_key_path
-#    type_hint: text
   - name: region
     description: AWS Region
     default: us-east-2
@@ -49,9 +49,5 @@ variables:
     description: AWS Availability Zone
     default: us-east-2b
     type_hint: text
-#  - name: pavm_bootstrap_s3
-#    description: Bootstrap S3 Bucket Name
-#    default: s3-something
-#    type_hint: text
 
 

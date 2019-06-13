@@ -1,0 +1,61 @@
+name: slr_bot
+# label used for menu selection
+label: Security Lifecycle Review
+
+description: |
+  This skillet will gather stats form a NGFW and prepare an SLR Report sent to the email of your choice
+
+type: python3
+
+# more complex skillets may express a dependency on another skillet that should be loaded before this one.
+# For example, a set of skillets may build off of a single 'golden config' that contains shared configuration
+# As this skillet is very simple, there is no need to build on another one.
+extends:
+
+# Labels allow grouping and type specific options and are generally only used in advanced cases
+labels:
+  collection:
+    - Python
+    - SLR Tools
+    - Assess
+
+# variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
+# may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application
+variables:
+  - name: firewall
+    description: NGFW IP or Hostname
+    default: 10.0.1.210
+    type_hint: fqdn_or_ip
+  - name: username
+    description: NGFW Username
+    default: admin
+    type_hint: text
+  - name: password
+    description: NGFW Password
+    default:
+    type_hint: password
+  - name: support_api_key
+    description: Support Portal API Key
+    default: 000-111-222-333-444-555
+    type_hint: text
+  - name: email
+    description: Email Recepient of Report
+    default: operator@telco.net
+    type_hint: email
+  - name: requester_email
+    description: Requester Email
+    default: your@email_here.io
+    type_hint: email
+  - name: prepared_by
+    description: Prepared By
+    default: Panhandler
+    type_hint: text
+
+
+# Snippets is an ordered list of configuration xml fragments that will be pushed to the PAN-OS NGFW. The xpath
+# determines where in the configuration hierarchy the xml fragment will be set. 'file' indicates the name of the file
+# to load and parse. Jinja2 style variables will be variable interpolated using the values of the 'variables' defined
+# in the 'variables' section.
+snippets:
+  - name: slr_bot
+    file: slr_bot.py

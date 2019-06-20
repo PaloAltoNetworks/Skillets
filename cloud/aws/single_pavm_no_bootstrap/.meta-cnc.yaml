@@ -21,7 +21,6 @@ labels:
   terraform_provider: aws
   collection:
     - Public Cloud
-    - AWS
     - Deploy
 
 

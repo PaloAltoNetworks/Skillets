@@ -19,7 +19,6 @@ labels:
   terraform_provider: aws
   collection:
     - Public Cloud
-    - AWS
     - Deploy
 
 # Variables will be presented to the user via the Panhandler GUI. These values will then be passed to

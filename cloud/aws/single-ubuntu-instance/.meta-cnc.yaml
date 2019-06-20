@@ -5,7 +5,7 @@ name: aws-hello-world-ubuntu
 label: AWS Single Ubuntu Instance
 
 # description is a longer more informative version of a label
-description: AWS Single ubuntu Instance
+description: Uses Terraform to launch a single Ubuntu Compute instance in AWS
 
 # type instructs Panhandler how to consume this skillet
 type: terraform
@@ -17,6 +17,9 @@ extends:
 # group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
 labels:
   terraform_provider: aws
+  collection:
+    - Public Cloud
+    - Deploy
 
 # Variables will be presented to the user via the Panhandler GUI. These values will then be passed to
 # the terraform binary as '--var' options, thus overriding any tfvars entries.

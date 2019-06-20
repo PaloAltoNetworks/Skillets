@@ -7,6 +7,6 @@ All skillets can be consumed by Panhandler, though other apps may exist to consu
 
 # More information
 
-See the Panhandler documenation for more information. https://panhandler.readthedocs.io/en/latest/metadata_configuration.html
+See the Panhandler documentation for more information. https://panhandler.readthedocs.io/en/latest/metadata_configuration.html
 
 

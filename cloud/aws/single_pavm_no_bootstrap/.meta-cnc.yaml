@@ -1,7 +1,7 @@
 # This is an example .meta-cnc.yaml file. This will allow Panhandler to consume this terraform project
 
 # this is the name of this skillet, should be unique within a given repository
-name: aws_single_pavm
+name: aws_single_pavm_no_bootstrap
 
 # label should be a human readable label that conveys what this skillet will do
 label: AWS Single PAN-OS VM-Series
@@ -18,8 +18,10 @@ extends:
 # labels allow extensible configuration options per skillet type. For example, lables can be used to
 # group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
 labels:
-  collection: AWS Cloud
   terraform_provider: aws
+  collection:
+    - Public Cloud
+    - Deploy
 
 
 # Variables will be presented to the user via the Panhandler GUI. These values will then be passed to
@@ -38,10 +40,6 @@ variables:
     description: SSH Key Name
     default: ssh_key_pair
     type_hint: text
-  - name: aws_key_path
-    description: Local SSH Key Path
-    default: ssh_key_path
-    type_hint: text
   - name: region
     description: AWS Region
     default: us-east-2
@@ -49,10 +47,6 @@ variables:
   - name: availability_zone
     description: AWS Availability Zone
     default: us-east-2b
-    type_hint: text
-  - name: pavm_bootstrap_s3
-    description: Bootstrap S3 Bucket Name
-    default: s3-something
     type_hint: text
 
 

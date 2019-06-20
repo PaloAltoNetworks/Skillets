@@ -18,7 +18,6 @@ extends:
 # labels allow extensible configuration options per skillet type. For example, lables can be used to
 # group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
 labels:
-  collection: AWS Cloud
   terraform_provider: aws
   collection:
     - Public Cloud

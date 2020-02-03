@@ -3,8 +3,7 @@
 A skillet is just a collection of templates with a bit of meta-data that goes along with them. Meta-data can include things like a 
 name for the collection, a type that describes how the templates can be consumed, a description, optional labels, etc.
 
-All skillets can be consumed by [Panhandler](github.com/Paloaltonetworks/panhandler), 
-though other apps may exist to consume specific skillets as well. 
+What's up with the [name 'Skillets' anyway?](https://live.paloaltonetworks.com/t5/Skillets-Blogs/The-Palo-Alto-Networks-Skillet-Story/ba-p/308056)
 
 ## Skillet types
 
@@ -19,10 +18,22 @@ of Skillets including:
 For more information, see the Panhandler [documentation](panhandler.readthedocs.io).
 
 
-## Examples
+## More information
 
-For more example Skillets, visit the 
-[Example Skillets Repository](https://github.com/PaloAltoNetworks/Example_Skillets)
+The [Live Community](https://live.paloaltonetworks.com/t5/Skillet-District/ct-p/Skillets)
+ is the central place for all things [Skillets](https://live.paloaltonetworks.com/t5/Skillets-Blogs/The-Palo-Alto-Networks-Skillet-Story/ba-p/308056). 
+
+See the Panhandler documentation for more [information](https://panhandler.readthedocs.io/en/latest/metadata_configuration.html).
+
+## How to use Skillets
+
+There are several applications that can deploy Skillets:
+
+* [Panhandler](httpos://panhandler.readthedocs.io) 
+
+* [Skilletlib](https://github.com/paloaltonetworks/skilletlib)
+
+* [SkilletCLI](https://github.com/adambaumeister/skilletcli)
 
 
 ## Disclaimer and Support Policy

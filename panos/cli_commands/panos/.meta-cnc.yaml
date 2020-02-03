@@ -8,7 +8,7 @@ description: |
 type: panos
 
 labels:
-  collection: Example Skillets
+  collection: Kitchen Sink
 
 variables:
   - name: cli_command

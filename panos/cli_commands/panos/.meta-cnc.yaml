@@ -19,7 +19,7 @@ variables:
 snippets:
   - name: check_hostname
     cmd: cli
-    cmd_str: {{ cli_command }}
+    cmd_str: '{{ cli_command }}'
     output_type: text
     outputs:
       - name: cli_output

@@ -1,0 +1,29 @@
+name: get_interfaces_94207658-8EAF-4893-ACB2-A3315657C9E5
+
+label: List PAN-OS Logical interfaces via REST
+
+description: |
+  This skillet demonstrates a simple REST api call to a PAN-OS NGFW to gather logical interfaces
+
+type: rest
+
+labels:
+  collection: Kitchen Sink
+
+variables:
+  - name: api_key
+    description: API Key
+    default: abc123
+    type_hint: hidden
+  - name: TARGET_IP
+    description: Host
+    default: panos-01
+    type_hint: hidden
+
+snippets:
+  - name: system_info
+    path: https://{{ TARGET_IP }}/api/?type=op&cmd=<show><interface>logical</interface></show>&key={{ api_key }}
+    output_type: xml
+    outputs:
+      - name: interface_names
+        capture_pattern: ./result/ifnet/entry/name

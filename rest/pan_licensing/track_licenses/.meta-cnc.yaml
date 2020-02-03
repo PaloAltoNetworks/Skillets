@@ -1,0 +1,34 @@
+name: track_license_usage_6D491B48-BED9-42ED-85AC-2AAD2D6198DF
+
+# label used for menu selection
+label: Track PAN-OS License Usage
+
+description: |
+  This skillet demonstrates a simple REST api to track PAN-OS License usage.
+
+type: rest
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: support_api_key
+    description: Licensing API Key
+    default: 0000-0000-0000-0000-0000
+    type_hint: text
+    help_text: The API Key can be found in the Paloaltonetworks support site.
+
+  - name: authcode
+    description: Auth Code to Check
+    default: ABC123
+    type_hint: text
+    help_text: Enter the Authorization code you would like to check
+
+snippets:
+  - name: track
+    path: https://api.paloaltonetworks.com/api/license/get
+    operation: post
+    payload: payload.j2
+    headers:
+      apiKey: '{{ support_api_key }}'
+      Content-Type: application/x-www-form-urlencoded

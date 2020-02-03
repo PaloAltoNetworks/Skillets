@@ -1,0 +1,27 @@
+name: dynamic_workflow_example_A7025A43-9BA1-4EA4-B600-A150F1634C63
+
+label: Dynamic UI Example 01
+
+description: |
+  This skillet demonstrates a simple workflow to collect data from a PAN-OS NGFW then uses that data to pre-populate
+  another input form. This also shows how to conditionally execute steps in a workflow. The user can the option to
+  skip a step in this workflow. The data is gathered via REST API calls executed using 'rest' skillets.
+
+type: workflow
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: cli_command
+    description: CLI Command
+    default: show system info
+    type_hint: text
+    help_text: Enter a CLI Command to see it's output in XML and
+
+snippets:
+  - name: panos_cli_cmd_F364C62E-A9F6-494A-832F-19E701AB1669
+  - name: cli_output_template_5670DC62-CAB5-4A02-8876-CB12CD3886AD
+
+
+

@@ -1,0 +1,33 @@
+name: hostname_change_8772B787-9148-4C50-9324-178F60C50F70
+
+# label used for menu selection
+label: Hello World Example (Set hostname)
+
+description: |
+  This skillet demonstrates a very basic PAN-OS configuration change. This allows the user to configure the
+  hostname on a PAN-OS NGFW. This skillet also shows how to perform a change only when a condition is evaluated
+  to True using output capturing and 'when' conditionals.
+
+type: panos
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+    help_text: This skillet will change the hostname of the desired firewall
+
+snippets:
+  - name: check_hostname
+    cmd: cli
+    cmd_str: show system info
+    outputs:
+      - name: hostname
+        capture_pattern: ./hostname
+  - name: set_hostname
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
+    file: device_system.xml
+    when: hostname != FW_NAME

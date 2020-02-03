@@ -1,0 +1,44 @@
+# This is an example .meta-cnc.yaml file. This will allow Panhandler to consume this terraform project
+
+# this is the name of this skillet, should be unique within a given repository
+name: azure_single_pavm
+
+# label should be a human readable label that conveys what this skillet will do
+label: Azure Single PAN-OS VM-Series
+
+# description is a longer more informative version of a label
+description: Azure Single PAN-OS VM-Series
+
+# type instructs Panhandler how to consume this skillet
+type: terraform
+
+# labels allow extensible configuration options per skillet type. For example, lables can be used to
+# group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
+labels:
+  terraform_provider: azure
+  collection:
+    - Example Skillets
+
+
+# Variables will be presented to the user via the Panhandler GUI. These values will then be passed to
+# the terraform binary as '--var' options, thus overriding any tfvars entries.
+# Variable names MUST match the names of the defined terraform variables
+variables:
+  - name: admin_username
+    description: Admin Username
+    default: panhandler
+    type_hint: text
+  - name: admin_password
+    description: Admin Password
+    default:
+    type_hint: password
+  - name: hostname
+    description: Hostname
+    default: panhandler-vm-01
+    type_hint: text
+  - name: resource_group
+    description: Resource Group
+    default: panhandler-unique-value-123
+    type_hint: text
+
+

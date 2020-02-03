@@ -1,0 +1,34 @@
+{% if gather_system_info == 'yes' %}
+
+Information gathered from the System.
+
+Hostname is {{ hostname }}
+
+Uptime is {{ uptime }}
+
+Software Version is {{ sw_version }}
+
+{% endif %}
+
+{% if interface_ips | default(false, false) %}
+And here are all your IP addresses you've entered:
+
+{% for name, ip in interface_ips.items() %}
+
+    {{ name }} was configured to have an IP Address of: {{ ip }}
+
+{% endfor %}
+
+{% endif %}
+
+Selected Interface is {{ selected_interface }}
+
+{% for i in checkbox_interface %}
+    Found selected interface {{ i }}
+{% endfor %}
+
+Radio Interface was {{ radio_interface }}
+
+float test was {{ float_test }}
+
+number test was {{ number_test }}

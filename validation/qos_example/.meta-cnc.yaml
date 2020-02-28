@@ -39,7 +39,7 @@ snippets:
           /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/class/entry[@name="{{ qos_class }}"]/../../@name
 
       - name: qos_without_class
-        # use capture pattern again to get a list of *all* qos profiles
+        # use capture_list  again to get a list of *all* qos profiles
         capture_list: |
           /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/@name
         # now, filter that list to only include items that are NOT in the previous list
@@ -51,7 +51,7 @@ snippets:
           /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/class/entry/@name
 
       - name: all_rules_without_profile
-        # use capture_object to get a list of qos rule entry objects
+        # use capture_list to get a list of qos rule entry objects
         capture_list: |
           /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/qos/rules/entry
         # we can now filter the objects for those that have a configured class that does NOT appear in the

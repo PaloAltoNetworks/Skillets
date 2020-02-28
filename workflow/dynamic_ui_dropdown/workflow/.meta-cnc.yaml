@@ -1,0 +1,56 @@
+name: dynamic_workflow_example_A7025A43-9BA1-4EA4-B600-A150F1634C63
+
+label: Dynamic UI Example 01
+
+description: |
+  This skillet demonstrates a simple workflow to collect data from a PAN-OS NGFW then uses that data to pre-populate
+  another input form. This also shows how to conditionally execute steps in a workflow. The user can the option to
+  skip a step in this workflow. The data is gathered via REST API calls executed using 'rest' skillets.
+
+type: workflow
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: TARGET_IP
+    description: Host
+    default: 127.0.0.1
+    type_hint: fqdn_or_ip
+  - name: TARGET_PORT
+    description: Port
+    default: 443
+    type_hint: number
+  - name: TARGET_USERNAME
+    description: Username
+    default: admin
+    type_hint: text
+  - name: TARGET_PASSWORD
+    description: Password
+    default: admin
+    type_hint: password
+  - name: gather_system_info
+    description: Gather System Info
+    default: yes
+    type_hint: dropdown
+    dd_list:
+      - key: 'Yes'
+        value: 'yes'
+      - key: 'No'
+        value: 'no'
+
+# For workflow type skillets, each snippet consists only of the 'name' attribute, which is the 'name' of the skillet
+# you want to be called. These are always evaluated in top to bottom order.
+# The optional 'when' conditional allows you to skip certain steps if the when conditional evaluated to 'false'
+# In this example, the user can opt to gather this information or not
+snippets:
+  - name: generate_api_key_CE3AB9F0-FB00-497D-96CC-38FBB40E98A6
+
+  - name: get_system_info_ACF249B2-D9B6-4062-8883-2A6BF7450C3A
+    when: gather_system_info == 'yes'
+
+  - name: get_interfaces_94207658-8EAF-4893-ACB2-A3315657C9E5
+
+  - name: dynamic_ui_example-42CB-45DB-92E9-AD0753E44DE0
+
+

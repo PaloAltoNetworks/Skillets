@@ -1,0 +1,38 @@
+name: dynamic_ui_example_text_with_source_5054CD85-C913-420A-B3CF-6569C3B0BFCB
+
+label: Show Outputs of Workflow 02
+
+description: |
+  This skillet demonstrates a simple template to show captured list values
+
+type: template
+
+# Labels allow grouping and type specific options and are generally only used in advanced cases
+labels:
+  collection: Kitchen Sink
+
+variables:
+  - name: TARGET_IP
+    description: Host
+    default: 127.0.0.1
+    type_hint: hidden
+  - name: interface_names
+    description: Interface Names
+    default: 127.0.0.1
+    type_hint: hidden
+  # note the use of 'source' attribute here. This will cause the UI to be rendered with multiple text inputs. Once
+  # for each item found in the 'source'
+  - name: interface_ips
+    description: Interface IP Address For
+    default: 10.10.10.10
+    type_hint: text
+    source: interface_names
+
+# Snippets is an ordered list of configuration xml fragments that will be pushed to the PAN-OS NGFW. The xpath
+# determines where in the configuration hierarchy the xml fragment will be set. 'file' indicates the name of the file
+# to load and parse. Jinja2 style variables will be variable interpolated using the values of the 'variables' defined
+# in the 'variables' section.
+snippets:
+  - name: debug_output
+    file: output.j2
+    template_title: Dynamic UI Output

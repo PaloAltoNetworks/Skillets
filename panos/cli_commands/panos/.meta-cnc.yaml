@@ -1,0 +1,33 @@
+name: panos_cli_cmd_F364C62E-A9F6-494A-832F-19E701AB1669
+
+label: PAN-OS CLI Example
+
+description: |
+  This skillet demonstrates how to execute an arbitrary CLI command on a PAN-OS Device and capture it's outputs
+
+type: panos
+
+labels:
+  collection: Kitchen Sink
+
+variables:
+  - name: cli_command
+    description: CLI Command
+    default: show system info
+    type_hint: hidden
+
+snippets:
+  - name: check_hostname
+    cmd: cli
+    cmd_str: '{{ cli_command }}'
+    output_type: text
+    outputs:
+      - name: cli_output
+
+  - name: convert_output
+    cmd: parse
+    variable: cli_output
+    output_type: xml
+    outputs:
+      - name: cli_output_as_object
+        capture_object: .

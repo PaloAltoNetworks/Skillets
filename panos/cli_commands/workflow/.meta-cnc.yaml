@@ -1,0 +1,25 @@
+name: panos_cli_example_FB7FDB9A-20A4-4A0A-AA26-EFCD43355C9E
+
+label: PAN-OS CLI Example
+
+description: |
+  This skillet demonstrates how to execute an arbitrary CLI command on a PAN-OS Device and capture it's outputs
+
+type: workflow
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: cli_command
+    description: CLI Command
+    default: show system info
+    type_hint: text
+    help_text: Enter a CLI Command to see it's output in XML and
+
+snippets:
+  - name: panos_cli_cmd_F364C62E-A9F6-494A-832F-19E701AB1669
+  - name: cli_output_template_5670DC62-CAB5-4A02-8876-CB12CD3886AD
+
+
+

@@ -1,0 +1,44 @@
+name: generate_api_key_CE3AB9F0-FB00-497D-96CC-38FBB40E98A6
+
+label: Generate and save PAN-OS API Key
+
+description: |
+  This skillet demonstrates a simple REST api call to a PAN-OS NGFW to generate a new API Key
+
+type: rest
+
+# Labels allow grouping and type specific options and are generally only used in advanced cases
+labels:
+  collection: Kitchen Sink
+
+# variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
+# may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application
+variables:
+  - name: TARGET_IP
+    description: Host
+    default: 127.0.0.1
+    type_hint: hidden
+  - name: TARGET_PORT
+    description: Port
+    default: 443
+    type_hint: hidden
+  - name: TARGET_USERNAME
+    description: Username
+    default: admin
+    type_hint: hidden
+  - name: TARGET_PASSWORD
+    description: Password
+    default: admin
+    type_hint: hidden
+
+
+snippets:
+  - name: key_gen
+    path: https://{{ TARGET_IP }}:{{ TARGET_PORT }}/api/?type=keygen&user={{ TARGET_USERNAME }}&password={{ TARGET_PASSWORD }}
+    # this should output capturing which will set a variable called 'api_key' in the workflow, which can be referenced
+    # in a skillet called after this one, any variable with a name called api_key will be prepopulated with the
+    # value that is captured from the output of this xml api command
+    output_type: xml
+    outputs:
+      - name: api_key
+        capture_pattern: result/key

@@ -1,0 +1,44 @@
+name: python3_env_input_example_833E4E0E-63C6-4FD8-8235-127C1C5F523F
+
+label: Example Python Script Argument Parsing
+
+description: |
+  This skillet demonstrates a simple Python script in action with Env based input arguments and list handling.
+
+type: python3
+
+labels:
+  collection:
+    - Example Skillets
+
+variables:
+  - name: USERNAME
+    description: Username
+    default: admin
+    type_hint: text
+  - name: PASSWORD
+    description: Password
+    default:
+    type_hint: password
+  - name: SECRET
+    description: Secret
+    default:
+    type_hint: password
+  - name: WISHLIST
+    description: Wish list
+    default:
+    type_hint: checkbox
+    cbx_list:
+      - key: Item 1
+        value: item1
+      - key: Item 2
+        value: item2
+      - key: Item 3
+        value: item3
+      - key: Item 4
+        value: item4
+
+snippets:
+  - name: script
+    file: input_from_env.py
+    input_type: env

@@ -1,0 +1,32 @@
+name: get_system_info_ACF249B2-D9B6-4062-8883-2A6BF7450C3A
+
+label: Get PAN-OS System Information via REST
+
+description: |
+  This skillet demonstrates a simple REST api call to a PAN-OS NGFW to gather it's system information
+
+type: rest
+
+labels:
+  collection: Kitchen Sink
+
+variables:
+  - name: api_key
+    description: API Key
+    default: abc123
+    type_hint: hidden
+  - name: TARGET_IP
+    description: target ip
+    type_hint: hidden
+
+snippets:
+  - name: system_info
+    path: https://{{ TARGET_IP }}/api/?type=op&cmd=<show><system><info></info></system></show>&key={{ api_key }}
+    output_type: xml
+    outputs:
+      - name: hostname
+        capture_pattern: result/system/hostname
+      - name: uptime
+        capture_pattern: result/system/uptime
+      - name: sw_version
+        capture_pattern: result/system/sw-version

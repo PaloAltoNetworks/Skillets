@@ -1,0 +1,11 @@
+
+The command: {{ cli_command }}
+
+Generated the following XML results:
+
+{{ cli_output | e }}
+
+
+Here is the output converted to an object:
+
+{{ cli_output_as_object | tojson(indent='  ') }}

@@ -1,0 +1,42 @@
+name: dynamic_ui_exmample_5B305F98-CF05-4932-8C3E-3F7AAEAA9551
+
+label: Dynamic UI Example 03
+
+description: |
+  This skillet demonstrates how to toggle the visibility of variables. It also shows how to only push a configuration
+  change in certain conditions using output capturing and 'when' conditionals.
+
+type: template
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: use_bgp
+    description: Use BGP
+    default: enable
+    type_hint: dropdown
+    dd_list:
+      - key: Enable
+        value: enable
+      - key: Disable
+        value: disable
+  - name: bgp_asn
+    description: BGP ASN
+    default: 64000
+    type_hint: text
+    toggle_hint:
+      source: use_bgp
+      value: enable
+  - name: iso
+    description: IS-IS
+    default: 49.0001.00a0.c96b.c490.00
+    type_hint: text
+    toggle_hint:
+      source: use_bgp
+      value: disable
+
+snippets:
+  - name: debug_output
+    file: output.j2
+    template_title: BGP Selection Output

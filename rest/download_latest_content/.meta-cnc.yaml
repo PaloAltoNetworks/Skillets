@@ -1,13 +1,12 @@
-name: hostname_change
+name: download_latest_content_pack
 # label used for menu selection
-label: Hello World Example (Set hostname)
+label: Download latest App Thread Dynamic Content
 
 description: |
-  This skillet demonstrates a very basic Pan-OS configuration change. This allows the user to configure the
-  hostname on a Pan-OS NGFW
+  This skillet demonstrates a simple REST api call to a PAN-OS NGFW to download the latest content
 
 # type of skillet (panos or panorama or template or terraform)
-type: panos
+type: rest
 
 # more complex skillets may express a dependency on another skillet that should be loaded before this one.
 # For example, a set of skillets may build off of a single 'golden config' that contains shared configuration
@@ -18,21 +17,29 @@ extends:
 labels:
   collection:
     - Example Skillets
-    - Configure
 
 # variables define the things an operator may customize in this skillet. Things like DNS servers, NTP addresses, etc
 # may be customized for each deployment. Each variable will be rendered as a form field in the panhandler application
 variables:
-  - name: FW_NAME
-    description: Firewall hostname
-    default: panos-01
+  - name: TARGET_IP
+    description: Host
+    default: 127.0.0.1
+    type_hint: fqdn_or_ip
+  - name: api_key
+    description: API Key
+    default: abc123
     type_hint: text
 
-# Snippets is an ordered list of configuration xml fragments that will be pushed to the Pan-OS NGFW. The xpath
-# determines where in the configuration heirarchy the xml fragment will be set. 'file' indicates the name of the file
+# Snippets is an ordered list of configuration xml fragments that will be pushed to the PAN-OS NGFW. The xpath
+# determines where in the configuration hierarchy the xml fragment will be set. 'file' indicates the name of the file
 # to load and parse. Jinja2 style variables will be variable interpolated using the values of the 'variables' defined
 # in the 'variables' section.
 snippets:
-  - name: device_system
-    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
-    file: device_system.xml
+  - name: app_threat
+    path: >-
+      https://{{ TARGET_IP }}/api/?type=op&cmd=<request><content><upgrade><download><latest></latest></download>
+      </upgrade></content></request>&key={{ api_key }}
+    output_type: xml
+    outputs:
+      - name: job_id
+        capture_pattern: result/job

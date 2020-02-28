@@ -1,0 +1,10 @@
+
+Output for our dynamic UI test example.
+
+You chose to {{ use_bgp }} BGP.
+
+{% if use_bgp == 'enable' %}
+ The selected ASN was {{ bgp_asn }}
+{% else %}
+ The selected IS-IS ISO number was: {{ iso }}
+{% endif %}

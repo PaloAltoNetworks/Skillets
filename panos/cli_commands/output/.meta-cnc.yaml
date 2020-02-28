@@ -1,0 +1,31 @@
+name: cli_output_template_5670DC62-CAB5-4A02-8876-CB12CD3886AD
+
+label: Template - CLI Output
+
+description: |
+  Simple output skillet
+
+type: template
+
+labels:
+  collection: Kitchen Sink
+
+# Note the use of the hidden variables so no new form is generated for this step in the workflow
+variables:
+  - name: cli_command
+    description: CLI Command
+    default:
+    type_hint: hidden
+  - name: cli_output
+    description: CLI Output
+    default:
+    type_hint: hidden
+  - name: cli_output_as_object
+    description: CLI Output As Object
+    default:
+    type_hint: hidden
+
+snippets:
+  - name: output
+    file: output.j2
+    template_title: CLI Output

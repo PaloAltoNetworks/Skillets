@@ -1,0 +1,38 @@
+
+
+
+Here are all the interfaces found on {{ TARGET_IP }}
+
+{% for i in interface_names %}
+
+    This interface was found: {{ i }}
+
+{% endfor %}
+
+{% if interface_ips | default(false, false) %}
+And here are all your IP addresses you've entered:
+
+{% for name, ip in interface_ips.items() %}
+
+    {{ name }} was configured to have an IP Address of: {{ ip }}
+
+{% endfor %}
+
+{% endif %}
+
+ANO NOW CHECK LENGTH
+
+{% if interface_ips | default({}) | length > 0 %}
+And here are all your IP addresses you've entered:
+
+{% for name, ip in interface_ips.items() %}
+
+    {{ name }} was configured to have an IP Address of: {{ ip }}
+
+{% endfor %}
+
+{% else %}
+
+NO INTERFACE IPS WERE FOUND
+
+{% endif %}

@@ -1,0 +1,21 @@
+name: docker_test_0-000002
+label: 000.1 docker test
+description: docker test
+type: docker
+extends:
+
+labels:
+  collection: Experimental
+
+variables:
+  - name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: terraform_test
+    image: "hashicorp/terraform:0.11.13"
+    cmd: terraform --version

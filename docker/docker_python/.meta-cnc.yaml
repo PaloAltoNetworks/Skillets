@@ -1,0 +1,23 @@
+name: docker_python_test_001
+label: Docker Python Example
+description: An example docker skillet that executes a python script found in the same directory
+
+type: docker
+extends:
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: FW_NAME
+    description: Firewall hostname
+    default: panos-01
+    type_hint: text
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: python_test
+    image: python:3.7-alpine
+    tag: latest
+    cmd: python3 ./hello_world.py

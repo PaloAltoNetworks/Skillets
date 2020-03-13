@@ -1,0 +1,29 @@
+name: docker_terraform_test_001
+label: Docker Terraform Example
+description: An example docker skillet that executes a terraform command
+
+type: docker
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: terraform_version
+    description: Terraform Version
+    default: 0.12.23
+    type_hint: dropdown
+    dd_list:
+      - key: 0.12.23
+        value: 0.12.23
+      - key: 0.11.13
+        value: 0.11.13
+      - key: latest
+        value: latest
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: terraform_test
+    image: "hashicorp/terraform"
+    tag: '{{ terraform_version }}'
+    cmd: terraform --version

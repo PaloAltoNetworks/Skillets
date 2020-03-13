@@ -29,6 +29,19 @@ variables:
     description: Example Secret
     default:
     type_hint: password
+  - name: wishlist
+    description: Wish list
+    default:
+    type_hint: checkbox
+    cbx_list:
+      - key: Item 1
+        value: item1
+      - key: Item 2
+        value: item2
+      - key: Item 3
+        value: item3
+      - key: Item 4
+        value: item4
 
 
 snippets:

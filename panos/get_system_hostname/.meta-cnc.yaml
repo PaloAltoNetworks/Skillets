@@ -14,7 +14,7 @@ labels:
 variables:
 
 snippets:
-- name: check_hostname
+    name: check_hostname
     cmd: cli
     cmd_str: show system info
     outputs:

@@ -1,0 +1,22 @@
+name: get_system_hostname
+label: Login into system and get hostname
+
+description: |
+  This skillet demonstrates a very basic PAN-OS configuration operational
+  command and how to extract info from the output
+
+type: pan_validation
+labels:
+  collection:
+    - Example Skillets
+    - Validation
+
+variables:
+
+snippets:
+- name: check_hostname
+    cmd: cli
+    cmd_str: show system info
+    outputs:
+      - name: hostname
+        capture_pattern: ./hostname

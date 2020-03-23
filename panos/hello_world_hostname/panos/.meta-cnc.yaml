@@ -21,12 +21,6 @@ variables:
     help_text: This skillet will change the hostname of the desired firewall
 
 snippets:
-  - name: check_hostname
-    cmd: cli
-    cmd_str: show system info
-    outputs:
-      - name: hostname
-        capture_pattern: ./hostname
   - name: set_hostname
     xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/system
     file: device_system.xml

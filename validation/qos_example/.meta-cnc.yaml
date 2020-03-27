@@ -1,0 +1,74 @@
+#
+# Example Output Capture Filtering
+#
+# In order to properly validate a config, it is often necessary to convert the XML structure to an object, which
+# can then be used in jinja expression to perform basic logic and validation. These examples demonstrate how
+# skillets are optimized for this task.
+#
+
+name: example-capture-filtering
+label: Example of how to use 'filter_items' with object capturing
+
+description: |
+  This example Skillet shows how to parse and validate a config using the 'filter_items' attribute in output capturing.
+  This is useful when you want to check a 'list' of items and filter out only those that fail a test. For example,
+  to get security rules that pertain to a certain zone, or interfaces with layer3 configuration, etc.
+
+type: pan_validation
+labels:
+  collection:
+    - Example Skillets
+    - Validation
+
+variables:
+  - name: qos_class
+    description: QoS Class to Check
+    default: class4
+    type_hint: text
+    help_text: Which class to ensure has at least one valid profile configured for it
+
+
+snippets:
+  - name: profile_objects
+    cmd: parse
+    variable: config
+    outputs:
+      - name: qos_with_class
+        # use capture_list to only return a list of qos profile names that *do have* the class we are looking for
+        capture_list: |
+          /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/class/entry[@name="{{ qos_class }}"]/../../@name
+
+      - name: qos_without_class
+        # use capture_list  again to get a list of *all* qos profiles
+        capture_list: |
+          /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/@name
+        # now, filter that list to only include items that are NOT in the previous list
+        filter_items: item not in qos_with_class
+
+      - name: all_configured_qos_classes
+        # now get a list of all configured classes
+        capture_list: |
+          /config/devices/entry[@name='localhost.localdomain']/network/qos/profile/entry/class/entry/@name
+
+      - name: all_rules_without_profile
+        # use capture_list to get a list of qos rule entry objects
+        capture_list: |
+          /config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/qos/rules/entry
+        # we can now filter the objects for those that have a configured class that does NOT appear in the
+        # all_configured_qos_classes list
+        filter_items:  ("class" ~ (item | element_value('entry.action.class'))) not in all_configured_qos_classes
+
+  - name: test_rules_without_qos_profiles
+    label: Ensure all qos policies have a configured qos profile
+    # note the use of 'map' here to pull out certain items from each object and join them together to construct our
+    # fail message. This will inform the user exactly which qos rules do not have an associated qos profile
+    fail_message: >-
+      "The following rules do not have an associated qos profile:
+      {{ all_rules_without_profile | map('element_value', 'entry.@name') | join(', ') }}"
+
+    test: |
+      (
+      all_rules_without_profile | length == 0
+      )
+    documentation_link: https://live.paloaltonetworks.com/t5/Skillet-District/ct-p/Skillets
+

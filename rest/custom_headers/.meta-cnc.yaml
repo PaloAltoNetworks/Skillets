@@ -1,0 +1,33 @@
+name: example_rest_skillet_headers
+label: Example Rest Skillet with custom headers
+
+description: |
+  This skillet demonstrates a simple REST api call with custom headers
+
+type: rest
+
+
+labels:
+  collection:
+    - Example Skillets
+
+variables:
+  - name: api_key
+    default:
+    description: API Key
+    type_hint: text
+
+snippets:
+  - name: Retrieve Remote Network Service IP from Prisma Access
+    path: https://api.gpcloudservice.com/getAddrList/latest?fwType=gpcs_remote_network&addrType=public_ip
+    operation: GET
+    headers:
+      header-api-key: '{{ api_key }}'
+    output_type: json
+    outputs:
+      - name: status
+        capture_pattern: $.status
+      - name: fwType
+        capture_pattern: $.result.fwType
+      - name: addrList
+        capture_pattern: $.result.addrList

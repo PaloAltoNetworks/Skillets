@@ -1,0 +1,19 @@
+name: docker_shell_test_001
+label: Docker Shell Script Example
+description: An example docker skillet that executes a Shell script in the current directory
+
+type: docker
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: cmd_arg
+    description: Shell Script Argument
+    default: argument_01
+    type_hint: text
+
+snippets:
+  - name: shell_execute
+    image: alpine
+    cmd: sh ./example.sh "{{ cmd_arg }}"

@@ -14,6 +14,8 @@ of Skillets including:
 * Terraform
 * Python
 * REST
+* Docker
+* Template
 
 For more information, see the Panhandler [documentation](https://panhandler.readthedocs.io).
 
@@ -36,6 +38,7 @@ There are several applications that can deploy Skillets:
 ## Skillet Metadata syntax
 
 See the [Panhandler documentation](https://panhandler.readthedocs.io/en/develop/skillets.html) for a the meta-cnc syntax. 
+
 ## Disclaimer and Support Policy
 
 This template/solution is released under an as-is, best effort, support policy. These scripts should be seen as community 

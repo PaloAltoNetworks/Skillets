@@ -1,0 +1,18 @@
+- name: Demonstrate how to use OP module to execute various op commands on PANW device
+  hosts: all
+  connection: local
+  gather_facts: False
+
+  roles:
+    - role: PaloAltoNetworks.paloaltonetworks
+
+  tasks:
+  - name: Show all interfaces using ('show interface all')
+    panos_op:
+      provider: '{{ provider }}'
+      cmd: '{{ cli }}'
+    register: result
+
+  - name: returned output in the default JSON format
+    debug: msg='{{ result.stdout }}'
+

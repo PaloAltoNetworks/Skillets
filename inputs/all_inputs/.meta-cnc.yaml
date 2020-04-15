@@ -9,7 +9,7 @@ type: template
 labels:
   collection: Example Skillets
   help_link: https://panhandler.readthedocs.io/en/master/variables.html
-  help_title: All available Variable Documentation
+  help_link_title: All available Variable Documentation
 
 variables:
   - name: simple_dropdown

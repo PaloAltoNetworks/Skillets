@@ -126,6 +126,9 @@ variables:
             "key2_test": "value2_test"
         }
     type_hint: json
+    attributes:
+      rows: 5
+      cols: 10
 
   - name: disabled_entry
     description: Disabled Entry

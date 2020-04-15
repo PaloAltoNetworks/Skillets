@@ -47,6 +47,7 @@ variables:
     description: File Upload
     default: ''
     type_hint: file
+    help_text: Your selected file will be uploaded and the variable will contain the full path.
 
   - name: text_with_validation
     description: Text Input with Validation
@@ -157,3 +158,4 @@ variables:
 snippets:
   - name: template_output
     file: output.j2
+    template_title: All Rendered values from the dynamically generated form

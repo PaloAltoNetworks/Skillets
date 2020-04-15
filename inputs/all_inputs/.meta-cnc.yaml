@@ -1,0 +1,154 @@
+name: all_inputs_example
+label: User Input example with All Input types
+
+description: |
+  This skillet demonstrates all the available variable input type_hints you can use to gather input from the operator
+
+type: template
+
+labels:
+  collection: Example Skillets
+
+variables:
+  - name: simple_dropdown
+    description: Select Entry
+    default: enable
+    type_hint: dropdown
+    dd_list:
+      - key: Enable
+        value: enable
+      - key: Disable
+        value: disable
+
+  - name: simple_dynamic_text
+    description: Simple Dynamic Text
+    default: This is only shown when the Simple Dropdown List is enabled
+    type_hint: text
+    toggle_hint:
+      source: simple_dropdown
+      value: enable
+
+  - name: simple_dynamic_text_inverse
+    description: Simple Dynamic Text Inverse
+    default: This is only shown when the Simple Dropdown List is disabled
+    type_hint: text
+    toggle_hint:
+      source: simple_dropdown
+      value: disable
+
+  - name: simple_list
+    description: List Values
+    default: ['one', 'two', 'three']
+    type_hint: list
+
+  - name: file_input
+    description: File Upload
+    default: ''
+    type_hint: file
+
+  - name: text_with_validation
+    description: Text Input with Validation
+    default: some text goes here
+    type_hint: text
+    help_text: Validations are enabled for this entry. No special charactors are allowed.
+    allow_special_characters: false
+    attributes:
+      min: 6
+      max: 256
+
+  - name: password_entry
+    description: Password Entry
+    default:
+    type_hint: password
+    help_text: Password entry will be masked with ***
+
+  - name: ip_address
+    description: IP Address Entry
+    default: 0.0.0.0
+    type_hint: ip_address
+
+  - name: fqdn_entry
+    description: FQDN or IP address Entry
+    default: 0.pool.ntp.org
+    type_hint: fqdn_or_ip
+
+  - name: url_entry
+    description: URL Entry
+    default: https://github.com/PaloAltoNetworks/Skillets.git
+    type_hint: url
+
+  - name: cidr_entry
+    description: IP Network Address CIDR Entry
+    default: 192.168.122.2/24
+    type_hint: cidr
+
+  - name: email_entry
+    description: Email Entry
+    default: support@noway.com
+    type_hint: email
+    help_text: Enter your email address here to receive lots of spam
+
+  - name: number_entry
+    description: Number Entry
+    default: 1001
+    type_hint: number
+    attributes:
+      min: 1000
+      max: 2000
+
+  - name: float_entry
+    description: Float Entry
+    default: 1.50
+    type_hint: float
+    attributes:
+      min: 1.00
+      max: 500.00
+
+  - name: text_area
+    description: Multi-Line Input
+    default: |
+      This is some very long input with lots of
+      newlines and white    space
+      and stuff. The optional attributes key can also be specified
+      to control now the text_area is rendered in panhandler and other cnc apps.
+    type_hint: text_area
+    attributes:
+      rows: 5
+      cols: 10
+
+  - name: json_string
+    description: JSON Input
+    default: |
+        {
+            "key_test": "value_test",
+            "key2_test": "value2_test",
+        }
+    type_hint: json
+
+  - name: disabled_entry
+    description: Disabled Entry
+    default: You can't change me
+    type_hint: disabled
+    help_text: This type of entry allows the user to see the value, but not change it
+
+  - name: radio_entry
+    description: Radio Entry
+    default: maybe
+    type_hint: radio
+    rad_list:
+      - key: 'Yes'
+        value: 'yes'
+      - key: 'No'
+        value: 'no'
+      - key: 'Maybe'
+        value: 'maybe'
+
+  - name: hidden_entry
+    description: This entry will be hidden but still present in the form
+    default: I am hidden
+    type_hint: hidden
+
+
+snippets:
+  - name: template_output
+    file: output.j2

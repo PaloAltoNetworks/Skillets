@@ -8,6 +8,8 @@ type: template
 
 labels:
   collection: Example Skillets
+  help_link: https://panhandler.readthedocs.io/en/master/variables.html
+  help_title: All available Variable Documentation
 
 variables:
   - name: simple_dropdown
@@ -121,7 +123,7 @@ variables:
     default: |
         {
             "key_test": "value_test",
-            "key2_test": "value2_test",
+            "key2_test": "value2_test"
         }
     type_hint: json
 
